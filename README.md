@@ -28,33 +28,45 @@ Deux centres + deux étudiants créés au démarrage via `CommandLineRunner`.
 
 **Query**
 ```graphql
-query {
-  listEtudiants {
-    id nom prenom genre
-    centre { nom }
-  }
+query ListEtudiants {
+    listEtudiants {
+        id
+        nom
+        prenom
+        genre
+        centre {
+            id
+            nom
+        }
+    }
 }
 ```
-
-**Mutations**
 ```graphql
-mutation {
-  addEtudiant(etudiant:{ nom:"Lahjaily", prenom:"Mokhtar", genre:Homme, centreId:1 }) {
-    id nom prenom centre { nom }
-  }
+query EtudiantById {
+    getEtudiantById(id: 1) {
+        id
+        nom
+        prenom
+        genre
+        centre {
+            nom
+            adresse
+        }
+    }
 }
 ```
-
 ```graphql
-mutation {
-  updateEtudiant(id:1, etudiant:{ nom:"Lahjaily", prenom:"Mokhtar", genre:Homme, centreId:2 }) {
-    id nom prenom centre { nom }
-  }
+query ListCentres {
+    centres {
+        id
+        nom
+        adresse
+        listEtudiants {
+            id
+            nom
+        }
+    }
 }
-```
-
-```graphql
-mutation { deleteEtudiant(id:1) }
 ```
 
 ## 🧾 Licence
